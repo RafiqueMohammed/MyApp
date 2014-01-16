@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/ViewNews_send_email" android:orderInCategory="1" android:title="@string/send_email" />
+    <item android:id="@+id/ViewNews_share_with" android:orderInCategory="2" android:title="Share with" />
+    
+
+</menu>

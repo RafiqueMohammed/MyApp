@@ -1,0 +1,54 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ViewLatestNews" >
+
+    
+   
+         
+<!--          android:layout_below="@+id/view_latest_news_posted_on" -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/view_latest_news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:text="@string/latest_news_dummy_title"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#99BB00" />
+
+<!--         android:layout_alignParentLeft="true" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_alignParentTop="true" -->
+
+    <TextView
+        android:id="@+id/view_latest_news_posted_on"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingBottom="10dp"
+        android:paddingRight="6dp"
+        android:text="@string/latest_news_dummy_posted"
+        android:textColor="#FFBB99" />
+
+<!--         android:layout_alignParentLeft="true" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_below="@+id/view_latest_news_title" -->
+
+                <TextView
+        android:id="@+id/view_latest_news_body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/latest_news_dummy_body" />
+</LinearLayout>
+    </ScrollView>

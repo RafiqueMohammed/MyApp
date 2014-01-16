@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+         <item android:id="@+id/latest_news_top_menu" 
+        android:showAsAction="always"
+         android:orderInCategory="4" 
+         android:title="@string/refresh"
+         android:icon="@drawable/refresh_64_2">
+        
+    </item>
+</menu>
