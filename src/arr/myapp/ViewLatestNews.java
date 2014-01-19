@@ -46,6 +46,7 @@ public class ViewLatestNews extends Activity {
 					body.setText(cur.getString(1));
 				}
 				cur.close();
+				db.close();
 			}
 		}
 

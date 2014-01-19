@@ -11,6 +11,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -237,8 +240,14 @@ public class LatestNews extends Activity {
 		@Override
 		protected String[] doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			HttpClient http = new DefaultHttpClient();
+			HttpParams param= new BasicHttpParams();
+			HttpConnectionParams.setConnectionTimeout(param,30000);
+			HttpConnectionParams.setSoTimeout(param, 30000);
+			HttpClient http = new DefaultHttpClient(param);
 			HttpGet send = new HttpGet(NEWS_URL);
+			
+			
+			
 
 			try {
 				HttpResponse rcvd = http.execute(send);
@@ -262,6 +271,7 @@ public class LatestNews extends Activity {
 				result[2] = content.toString();
 
 				in.close();
+				bf.close();
 				return result;
 
 			} catch (ClientProtocolException e) {

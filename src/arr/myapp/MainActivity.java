@@ -69,8 +69,12 @@ list=new ArrayList<HomeMenuListColl>();
    		 intent = new Intent(this,LatestNews.class);
    		 break;
     	case 4:
-   		 intent = new Intent(this,Feedback.class);
-   		 break;
+      		 intent = new Intent(this,Feedback.class);
+      		 break;
+    	case 5:
+      		 intent = new Intent(this,Settings.class);
+      		 startActivityForResult(intent, 1);
+      		 break;
  		
     	}
     	

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">MyApp</string>
-    <string name="action_settings">Settings</string>
+    <string name="feedback_send">Send</string>
     <string name="hello_world">Hello world!</string>
     <string name="salaam_en">Assalaam-u-Alaikum</string>
     <string name="salaam_ta">அஸ்ஸலாமு அலைக்கும்</string>

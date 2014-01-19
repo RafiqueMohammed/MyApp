@@ -5,11 +5,12 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -58,6 +59,10 @@
         <activity
             android:name="arr.myapp.Feedback"
             android:label="@string/title_activity_feedback" >
+        </activity>
+        <activity
+            android:name="arr.myapp.Settings"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 
