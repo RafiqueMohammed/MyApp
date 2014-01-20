@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -21,16 +22,15 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
-import android.provider.Telephony;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 
 public class Feedback extends Activity {
 
@@ -43,6 +43,11 @@ public class Feedback extends Activity {
 		fname=(EditText) findViewById(R.id.feedback_fname);
 		email=(EditText) findViewById(R.id.feedback_email);
 		msg=(EditText) findViewById(R.id.feedback_msg);
+		AccountManager manager = AccountManager.get(this); 
+	    Account[] accounts = manager.getAccountsByType("com.google"); 
+	    MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false);
+	    UUID uniqueKey = UUID.randomUUID();   
+	    Log.d("ARR","Unique ID :"+uniqueKey);
 		
 	}
 	@Override
