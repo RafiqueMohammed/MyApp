@@ -14,7 +14,6 @@ public class NewsAdapter extends ArrayAdapter<ListViewCollection.AddNews> {
 
 	TextView title,desc,body,posted_on;
 	int cloud_id,_id;
-	View row;
 	Context c;
 	int res;
 	List<AddNews> mycoll;
@@ -50,24 +49,35 @@ public void setListData(List<AddNews> data){
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
+		ViewHolder holder=null;
+		
 		if(convertView!=null){
-			row=convertView;
+			holder=(ViewHolder) convertView.getTag();
 		}else{
-		
 		LayoutInflater inflater=(LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		row=inflater.inflate(res,parent,false);
+		convertView=inflater.inflate(res,parent,false);
+		
+		holder=new ViewHolder();
+		holder.VH_title=(TextView) convertView.findViewById(R.id.LatestNews_title);
+		holder.VH_desc=(TextView) convertView.findViewById(R.id.LatestNews_description);
+		holder.VH_posted_on=(TextView) convertView.findViewById(R.id.LatestNews_posted_on);
+		convertView.setTag(holder);
+		
 		}
-		title=(TextView) row.findViewById(R.id.LatestNews_title);
-		desc=(TextView) row.findViewById(R.id.LatestNews_description);
-		posted_on=(TextView) row.findViewById(R.id.LatestNews_posted_on);
-		
-		title.setText(mycoll.get(position).getTitle());
-		desc.setText(mycoll.get(position).getDescription());
-		posted_on.setText(mycoll.get(position).getPosted_on());
-		_id=mycoll.get(position).get_id();
 		
 		
-		return row;
+		holder.VH_title.setText(mycoll.get(position).getTitle());
+		holder.VH_desc.setText(mycoll.get(position).getDescription());
+		holder.VH_posted_on.setText(mycoll.get(position).getPosted_on());
+		mycoll.get(position).get_id();
+		
+		
+		return convertView;
+	}
+	
+	private class ViewHolder{
+		TextView VH_title,VH_desc,VH_posted_on;
+		
 	}
 
 }

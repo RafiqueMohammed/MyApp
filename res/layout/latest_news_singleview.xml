@@ -39,7 +39,7 @@
         android:paddingTop="2dp"
         android:text="@string/latest_news_dummy_posted"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#44EE" />
+        android:textColor="#911991" />
 
  
 </RelativeLayout>

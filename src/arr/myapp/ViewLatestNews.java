@@ -60,7 +60,6 @@ public class ViewLatestNews extends Activity {
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		Intent intent=new Intent();
 		intent.setAction(Intent.ACTION_SEND);
 		
@@ -71,12 +70,7 @@ public class ViewLatestNews extends Activity {
 			startActivity(Intent.createChooser(intent,getResources().getString(R.string.salaam_ta)));
 			return true;
 		case R.id.ViewNews_send_email: 
-			intent.putExtra(Intent.EXTRA_EMAIL,"ar.rafiq@live.com");
-			intent.putExtra(Intent.EXTRA_SUBJECT,"HOTD");
-			intent.putExtra(Intent.EXTRA_TEXT,body.getText());
-			intent.setType("message/rfc822");
-			
-			startActivity(Intent.createChooser(intent,getResources().getString(R.string.salaam_ta)));
+			MyMethods.SendMail(this,title.getText(),body.getText());
 			return true;
 		default:return super.onOptionsItemSelected(item); 
 		}

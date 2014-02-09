@@ -8,10 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewLatestNews" >
 
-    
-   
-         
-<!--          android:layout_below="@+id/view_latest_news_posted_on" -->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,13 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:text="@string/latest_news_dummy_title"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#99BB00" />
+        android:textColor="#99BB00" /> <!-- android:text="@string/latest_news_dummy_title" -->
 
-<!--         android:layout_alignParentLeft="true" -->
-<!--         android:layout_alignParentRight="true" -->
-<!--         android:layout_alignParentTop="true" -->
 
     <TextView
         android:id="@+id/view_latest_news_posted_on"
@@ -38,17 +30,14 @@
         android:gravity="right"
         android:paddingBottom="10dp"
         android:paddingRight="6dp"
-        android:text="@string/latest_news_dummy_posted"
-        android:textColor="#FFBB99" />
+       
+        android:textStyle="bold"
+        android:textColor="#FFBB99" /><!-- android:text="@string/latest_news_dummy_posted" -->
 
-<!--         android:layout_alignParentLeft="true" -->
-<!--         android:layout_alignParentRight="true" -->
-<!--         android:layout_below="@+id/view_latest_news_title" -->
-
-                <TextView
+    <TextView
         android:id="@+id/view_latest_news_body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/latest_news_dummy_body" />
+       />  <!-- android:text="@string/latest_news_dummy_body" -->
 </LinearLayout>
     </ScrollView>

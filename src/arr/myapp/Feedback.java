@@ -160,6 +160,7 @@ public class Feedback extends Activity {
 					if(sStatus.equals("ok")){
 						
 						Toast.makeText(Feedback.this,""+sResult,Toast.LENGTH_LONG).show();
+						Feedback.this.finish();
 						
 					}else if(sStatus.equals("no")){
 						Toast.makeText(Feedback.this,""+sResult,Toast.LENGTH_LONG).show();

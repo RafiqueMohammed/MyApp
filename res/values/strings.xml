@@ -42,5 +42,7 @@
     <string name="full_name">Full Name</string>
     <string name="email">Email ID</string>
     <string name="your_message">Your Message</string>
+    <string name="delete">Delete</string>
+    <string name="add_to_fav">Add to Favourite</string>
 
 </resources>

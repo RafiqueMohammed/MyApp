@@ -28,10 +28,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
 import arr.myapp.ListViewCollection.AddNews;
@@ -61,7 +65,7 @@ public class LatestNews extends Activity {
 		con = LatestNews.this;
 			populateLatestNewsList();
 
-			
+			registerForContextMenu(newsList);
 		
 		newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -74,12 +78,46 @@ public class LatestNews extends Activity {
 				view_news.putExtra("item_id",item_id);
 				startActivity(view_news);
 			}
+	
 			
 		});
 		
+	
 		
 			
 	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		getMenuInflater().inflate(R.menu.latest_news_context, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		AdapterContextMenuInfo itemview = (AdapterContextMenuInfo) item.getMenuInfo();
+
+		switch(item.getItemId()){
+		case R.id.latest_news_context_delete:
+			NewsAdapter ListAdapt=(NewsAdapter) newsList.getAdapter();
+			ListAdapt.remove(ListAdapt.getItem(itemview.position));
+			ListAdapt.notifyDataSetChanged();
+			return true;
+		case R.id.latest_news_sendmail:
+			Log.d("ARR","Send Mail was clicked");
+			return true;
+		case R.id.latest_news_addfav:
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
+		
+	}
+	
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -111,10 +149,7 @@ public class LatestNews extends Activity {
 
 	public void populateLatestNewsList()
 		 {
-	/*	ContentResolver cp=getApplicationContext().getContentResolver();
-		String[] col={"_id","title","description","posted_on"};
-		cur=cp.query(MyContentProvider.AuthUri,col, null, null, ""); */
-		
+	
 		String qry = "SELECT _id,title,description,posted_on FROM "+MyDatabase.TAB_NEWS+" ORDER BY "+MyDatabase.FLD_ID+" DESC;";
 		SQLiteDatabase db = mydb.getReadableDatabase();
 		cur= db.rawQuery(qry, null);
@@ -124,13 +159,8 @@ public class LatestNews extends Activity {
 			addnews.add(new AddNews(cur.getInt(0), cur.getString(1), cur.getString(2), cur.getString(3)));
 			
 		} 
-		
-	/*	int[] to={R.id.LatestNews_title,R.id.LatestNews_description,R.id.LatestNews_posted_on};
-	sca= new SimpleCursorAdapter(getApplicationContext(),R.layout.latest_news_singleview,cur,col, to,CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-		newsList.setAdapter(sca); */
-		
+	
 		NewsAdapter adapt = new NewsAdapter(this,R.layout.latest_news_singleview, R.id.LatestNews_title,addnews);
-		
 		newsList.setAdapter(adapt);
 		
 		}

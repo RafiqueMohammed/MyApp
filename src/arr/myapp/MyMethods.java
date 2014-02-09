@@ -2,11 +2,13 @@ package arr.myapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 
 public class MyMethods {
 	public static Activity activity;
-	
+	static Intent intent=new Intent();
 	public static void ShowAlert(Activity act,String title,String msg,Boolean finishOnOK){
 		MyMethods.activity=act;
 		AlertDialog.Builder d = new AlertDialog.Builder(act);
@@ -27,6 +29,13 @@ public class MyMethods {
 		}
 
 		d.show();
+	}
+	
+	public static void SendMail(Context con,CharSequence title,CharSequence body){
+		intent.putExtra(Intent.EXTRA_SUBJECT,title);
+		intent.putExtra(Intent.EXTRA_TEXT,body);
+		intent.setType("message/rfc822");
+		con.startActivity(Intent.createChooser(intent,"Send mail using"));
 	}
 
 }
