@@ -46,7 +46,7 @@ public class LatestNews extends Activity {
 	Context con;
 	final String NEWS_URL = "http://api.aitj.org/api/v1/?android";
 	List<AddNews> addnews = new ArrayList<ListViewCollection.AddNews>();
-	MyDatabase mydb;
+	static MyDatabase mydb;
 	SQLiteDatabase db;
 	FetchLatestNews fn;
 	NewsAdapter adapt;
@@ -97,13 +97,15 @@ public class LatestNews extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		AdapterContextMenuInfo itemview = (AdapterContextMenuInfo) item.getMenuInfo();
 
 		switch(item.getItemId()){
 		case R.id.latest_news_context_delete:
-			NewsAdapter ListAdapt=(NewsAdapter) newsList.getAdapter();
-			ListAdapt.remove(ListAdapt.getItem(itemview.position));
-			ListAdapt.notifyDataSetChanged();
+			AdapterContextMenuInfo cont=(AdapterContextMenuInfo) item.getMenuInfo();
+			if(MyMethods.DeleteItemFromListView(newsList.getAdapter(), cont)){
+				Toast.makeText(this,"Successfully deleted",Toast.LENGTH_LONG).show();
+			}else{
+				Toast.makeText(this,"Cannot be deleted",Toast.LENGTH_LONG).show();
+			}
 			return true;
 		case R.id.latest_news_sendmail:
 			Log.d("ARR","Send Mail was clicked");

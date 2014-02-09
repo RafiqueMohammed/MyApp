@@ -45,6 +45,9 @@ public class Feedback extends Activity {
 		msg=(EditText) findViewById(R.id.feedback_msg);
 		AccountManager manager = AccountManager.get(this); 
 	    Account[] accounts = manager.getAccountsByType("com.google"); 
+	    if(accounts.length<1){
+	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true);
+	    }
 	    MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false);
 	    UUID uniqueKey = UUID.randomUUID();   
 	    Log.d("ARR","Unique ID :"+uniqueKey);
