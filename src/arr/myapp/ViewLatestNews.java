@@ -23,7 +23,7 @@ public class ViewLatestNews extends Activity {
 		setContentView(R.layout.activity_view_latest_news);
 		Intent intent = getIntent();
 		this.item_id = intent.getIntExtra("item_id", 0);
-
+ 
 		if (item_id == 0) {
 			MyMethods.ShowAlert(this,"Sorry!","Your requested content is either invalid or removed", true);
 			
@@ -67,7 +67,7 @@ public class ViewLatestNews extends Activity {
 		case R.id.ViewNews_share_with:
 			intent.putExtra(Intent.EXTRA_TEXT,body.getText());
 			intent.setType("text/plain");
-			startActivity(Intent.createChooser(intent,getResources().getString(R.string.salaam_ta)));
+			startActivity(Intent.createChooser(intent,"Share with.."));
 			return true;
 		case R.id.ViewNews_send_email: 
 			MyMethods.SendMail(this,title.getText(),body.getText());

@@ -44,13 +44,16 @@ public class Feedback extends Activity {
 		email=(EditText) findViewById(R.id.feedback_email);
 		msg=(EditText) findViewById(R.id.feedback_msg);
 		AccountManager manager = AccountManager.get(this); 
-	    Account[] accounts = manager.getAccountsByType("com.google"); 
-	    if(accounts.length<1){
-	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true);
-	    }
-	    MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false);
+	    Account[] accounts = manager.getAccounts();
 	    UUID uniqueKey = UUID.randomUUID();   
 	    Log.d("ARR","Unique ID :"+uniqueKey);
+	    if(accounts.length<1){
+	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true);
+	    }else{
+	    	  MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false);
+	    }
+	  
+
 		
 	}
 	@Override

@@ -37,6 +37,7 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import arr.myapp.ListViewCollection.AddNews;
 
@@ -81,8 +82,6 @@ public class LatestNews extends Activity {
 	
 			
 		});
-		
-	
 		
 			
 	}
@@ -163,7 +162,11 @@ public class LatestNews extends Activity {
 		} 
 	
 		NewsAdapter adapt = new NewsAdapter(this,R.layout.latest_news_singleview, R.id.LatestNews_title,addnews);
+		TextView empty_view=new TextView(LatestNews.this);
+		empty_view.setText("Your News Box Is Empty!");
+		newsList.setEmptyView(empty_view);
 		newsList.setAdapter(adapt);
+		
 		
 		}
 

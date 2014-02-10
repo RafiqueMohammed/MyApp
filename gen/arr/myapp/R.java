@@ -45,15 +45,16 @@ public final class R {
         public static final int list_view_selector_tmp=0x7f020009;
         public static final int livefeeds64=0x7f02000a;
         public static final int news64=0x7f02000b;
-        public static final int refresh_64_1=0x7f02000c;
-        public static final int refresh_64_2=0x7f02000d;
-        public static final int send_now=0x7f02000e;
-        public static final int sendback64=0x7f02000f;
-        public static final int settings64=0x7f020010;
-        public static final int splash=0x7f020011;
-        public static final int stop_32=0x7f020012;
-        public static final int video_64=0x7f020013;
-        public static final int x_close=0x7f020014;
+        public static final int news_time=0x7f02000c;
+        public static final int refresh_64_1=0x7f02000d;
+        public static final int refresh_64_2=0x7f02000e;
+        public static final int send_now=0x7f02000f;
+        public static final int sendback64=0x7f020010;
+        public static final int settings64=0x7f020011;
+        public static final int splash=0x7f020012;
+        public static final int stop_32=0x7f020013;
+        public static final int video_64=0x7f020014;
+        public static final int x_close=0x7f020015;
     }
     public static final class id {
         public static final int HomeMenu=0x7f0b000a;

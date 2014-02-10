@@ -17,12 +17,12 @@
 
     </ListView>
 
-    <ImageView
+   <!--  <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignLeft="@+id/HomeMenu"
         android:layout_alignParentTop="true"
-        android:src="@drawable/bismillah_custom" />
+        android:src="@drawable/bismillah_custom" /> -->
     
 </RelativeLayout>

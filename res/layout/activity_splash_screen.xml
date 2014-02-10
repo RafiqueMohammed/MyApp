@@ -16,7 +16,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/splash" />
+        android:src="@drawable/news_time" />
 
     <TextView
         android:id="@+id/splash_txt"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
-        android:text="@string/salaam_ta"
+        android:text="Welcome to News Time"
         android:layout_marginTop="15dp"/>
 
 </RelativeLayout>

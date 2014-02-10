@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-list=new ArrayList<HomeMenuListColl>();
+        list=new ArrayList<HomeMenuListColl>();
         list.add(new HomeMenuListColl("Latest News",R.drawable.news64));
         list.add(new HomeMenuListColl("Live Feeds",R.drawable.livefeeds64));
         list.add(new HomeMenuListColl("Live Video",R.drawable.video_64));
@@ -31,8 +31,6 @@ list=new ArrayList<HomeMenuListColl>();
    
         
         homeMenu=(ListView) findViewById(R.id.HomeMenu);
-        
-        
        // homeMenu.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.home_menu_array)));
        homeMenu.setAdapter(new MyAdapter(this,R.layout.all_list_layout,list)) ;
        
