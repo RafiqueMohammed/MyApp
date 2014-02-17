@@ -2,23 +2,21 @@ package arr.myapp;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import arr.myapp.ListViewCollection.AddNews;
 
 public class NewsAdapter extends ArrayAdapter<ListViewCollection.AddNews> {
-
-	TextView title,desc,body,posted_on;
-	int cloud_id,_id;
 	Context c;
 	int res;
 	List<AddNews> mycoll;
-	public NewsAdapter(Context context, int resource, int textViewResourceId,
-			List<AddNews> coll) {
+	public NewsAdapter(Context context, int resource, int textViewResourceId,List<AddNews> coll) {
 		super(context, resource, textViewResourceId, coll);
 		// TODO Auto-generated constructor stub
 		this.c=context;
@@ -46,6 +44,7 @@ public void setListData(List<AddNews> data){
 	notifyDataSetChanged();
 	
 }
+	@SuppressLint("ResourceAsColor")
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
@@ -61,12 +60,19 @@ public void setListData(List<AddNews> data){
 		holder.VH_title=(TextView) convertView.findViewById(R.id.LatestNews_title);
 		holder.VH_desc=(TextView) convertView.findViewById(R.id.LatestNews_description);
 		holder.VH_posted_on=(TextView) convertView.findViewById(R.id.LatestNews_posted_on);
+		holder.VH_fav=(ImageView) convertView.findViewById(R.id.latest_news_addfav);
 		convertView.setTag(holder);
 		
 		}
 		
 		
 		holder.VH_title.setText(mycoll.get(position).getTitle());
+		if(mycoll.get(position).getStatus()!=1){
+			
+		}
+		if(mycoll.get(position).getFav()==1){
+			holder.VH_fav.setImageResource(R.drawable.fav_28);
+		}
 		holder.VH_desc.setText(mycoll.get(position).getDescription());
 		holder.VH_posted_on.setText(mycoll.get(position).getPosted_on());
 		mycoll.get(position).get_id();
@@ -77,6 +83,7 @@ public void setListData(List<AddNews> data){
 	
 	private class ViewHolder{
 		TextView VH_title,VH_desc,VH_posted_on;
+		ImageView VH_fav;
 		
 	}
 

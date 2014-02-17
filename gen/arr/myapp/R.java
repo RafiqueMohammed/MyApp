@@ -20,6 +20,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int UnreadList=0x7f090001;
         public static final int getCCC=0x7f090000;
     }
     public static final class dimen {
@@ -39,22 +40,23 @@ public final class R {
         public static final int check_white_48=0x7f020003;
         public static final int contacts64=0x7f020004;
         public static final int cross_red48=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int list_view_default=0x7f020007;
-        public static final int list_view_hover=0x7f020008;
-        public static final int list_view_selector_tmp=0x7f020009;
-        public static final int livefeeds64=0x7f02000a;
-        public static final int news64=0x7f02000b;
-        public static final int news_time=0x7f02000c;
-        public static final int refresh_64_1=0x7f02000d;
-        public static final int refresh_64_2=0x7f02000e;
-        public static final int send_now=0x7f02000f;
-        public static final int sendback64=0x7f020010;
-        public static final int settings64=0x7f020011;
-        public static final int splash=0x7f020012;
-        public static final int stop_32=0x7f020013;
-        public static final int video_64=0x7f020014;
-        public static final int x_close=0x7f020015;
+        public static final int fav_28=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int list_view_default=0x7f020008;
+        public static final int list_view_hover=0x7f020009;
+        public static final int list_view_selector_tmp=0x7f02000a;
+        public static final int livefeeds64=0x7f02000b;
+        public static final int news64=0x7f02000c;
+        public static final int news_time=0x7f02000d;
+        public static final int refresh_64_1=0x7f02000e;
+        public static final int refresh_64_2=0x7f02000f;
+        public static final int send_now=0x7f020010;
+        public static final int sendback64=0x7f020011;
+        public static final int settings64=0x7f020012;
+        public static final int splash=0x7f020013;
+        public static final int stop_32=0x7f020014;
+        public static final int video_64=0x7f020015;
+        public static final int x_close=0x7f020016;
     }
     public static final class id {
         public static final int HomeMenu=0x7f0b000a;
@@ -71,20 +73,20 @@ public final class R {
         public static final int feedback_email=0x7f0b0005;
         public static final int feedback_fname=0x7f0b0002;
         public static final int feedback_msg=0x7f0b0007;
-        public static final int feedback_send=0x7f0b001e;
+        public static final int feedback_send=0x7f0b001f;
         public static final int homeMenu_icon_layout=0x7f0b0014;
         public static final int homeMenu_title_layout=0x7f0b0015;
         public static final int home_menu_layout_parent=0x7f0b0013;
         public static final int imageView1=0x7f0b000b;
-        public static final int latest_news_addfav=0x7f0b0022;
-        public static final int latest_news_context_delete=0x7f0b0020;
-        public static final int latest_news_sendmail=0x7f0b0021;
-        public static final int latest_news_top_menu=0x7f0b001f;
-        public static final int list_title=0x7f0b001a;
-        public static final int loading_txt=0x7f0b001d;
-        public static final int progressBar1=0x7f0b001c;
+        public static final int latest_news_addfav=0x7f0b001a;
+        public static final int latest_news_context_delete=0x7f0b0021;
+        public static final int latest_news_sendmail=0x7f0b0022;
+        public static final int latest_news_top_menu=0x7f0b0020;
+        public static final int list_title=0x7f0b001b;
+        public static final int loading_txt=0x7f0b001e;
+        public static final int progressBar1=0x7f0b001d;
         public static final int relativeLayout1=0x7f0b0016;
-        public static final int send_btn=0x7f0b001b;
+        public static final int send_btn=0x7f0b001c;
         public static final int splash_txt=0x7f0b000c;
         public static final int tableRow1=0x7f0b0000;
         public static final int tableRow2=0x7f0b0003;

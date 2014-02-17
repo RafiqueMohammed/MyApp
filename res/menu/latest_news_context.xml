@@ -10,6 +10,7 @@
     </item>
  <item
         android:id="@+id/latest_news_addfav"
-        android:title="@string/send_email">
+        android:title="@string/add_to_fav">
     </item>
+ 
 </menu>

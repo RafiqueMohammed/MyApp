@@ -25,7 +25,7 @@ public class ViewLatestNews extends Activity {
 		this.item_id = intent.getIntExtra("item_id", 0);
  
 		if (item_id == 0) {
-			MyMethods.ShowAlert(this,"Sorry!","Your requested content is either invalid or removed", true);
+			MyMethods.ShowAlert(this,"Sorry!","Your requested content is either invalid or removed", true,false);
 			
 		} else {
 			this.mydb = new MyDatabase(this);
@@ -35,7 +35,7 @@ public class ViewLatestNews extends Activity {
 			int num_rows=cur.getCount();
 			
 			if(num_rows==0){
-				MyMethods.ShowAlert(this,"Not Found!","Content cannot be found!", true);		
+				MyMethods.ShowAlert(this,"Not Found!","Content cannot be found!", true,false);		
 			}else{
 				title=(TextView) findViewById(R.id.view_latest_news_title);
 				posted=(TextView) findViewById(R.id.view_latest_news_posted_on);

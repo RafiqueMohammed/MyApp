@@ -48,9 +48,9 @@ public class Feedback extends Activity {
 	    UUID uniqueKey = UUID.randomUUID();   
 	    Log.d("ARR","Unique ID :"+uniqueKey);
 	    if(accounts.length<1){
-	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true);
+	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true,false);
 	    }else{
-	    	  MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false);
+	    	  MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false,true);
 	    }
 	  
 
@@ -76,7 +76,7 @@ public class Feedback extends Activity {
 			String sEmail=email.getText().toString();
 			String sMsg=msg.getText().toString();
 			if(sFname==null || sFname==""||sMsg==null || sMsg.equals("")){
-				MyMethods.ShowAlert((Activity) this,"Required","Requires field is empty!",false);
+				MyMethods.ShowAlert((Activity) this,"Required","Requires field is empty!",false,false);
 			}else{
 				FeedBackFormData fData=new FeedBackFormData(sFname,sEmail,sMsg, dev_id);
 				new FeedbackSync().execute(fData);

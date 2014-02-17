@@ -54,8 +54,8 @@ public class SplashScreen extends Activity {
 								splash_txt.setText("Setting up environment for the first time use..");
 								MyDatabase mydb= new MyDatabase(SplashScreen.this);
 								
-								String qry="INSERT INTO "+MyDatabase.TAB_NEWS+"(cloud_id,title,description,body,posted_on,status,enabled)" +
-										" VALUES(1,'Welcome','Thanks for downloading our first BETA App of All India thowheed Jamaath','Thanks for downloading our first BETA App of All India thowheed Jamaath','2013-12-12',1,1);";
+								String qry="INSERT INTO "+MyDatabase.TAB_NEWS+"(cloud_id,title,description,body,posted_on)" +
+										" VALUES(0,'Welcome','Thanks for downloading our first BETA App of All India thowheed Jamaath','Thanks for downloading our first BETA App of All India thowheed Jamaath','2013-12-12');";
 							SQLiteDatabase db=mydb.getWritableDatabase();
 							try {
 								Cursor cu;

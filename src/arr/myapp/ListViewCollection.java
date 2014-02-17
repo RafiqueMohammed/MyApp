@@ -6,14 +6,17 @@ public class ListViewCollection {
 		String title;
 		String description;
 		String posted_on;
-		int _id;
+		int _id,status,cloud_id,fav;
 	
-		public AddNews(int _id,String title, String description, String posted_on) {
+		public AddNews(int cloud_id,int _id,String title, String description, String posted_on,int flag,int fav) {
 			super();
 			this.title = title;
 			this.description = description;
 			this.posted_on = posted_on;
 			this._id = _id;
+			this.status=flag;
+			this.cloud_id=cloud_id;
+			this.fav=fav;
 			
 		}
 		public String getTitle() {
@@ -25,8 +28,17 @@ public class ListViewCollection {
 		public String getPosted_on() {
 			return posted_on;
 		}
+		public int getStatus() {
+			return status;
+		}
 		public int get_id() {
 			return _id;
+		}
+		public int getCloud_id() {
+			return cloud_id;
+		}
+		public int getFav() {
+			return fav;
 		}
 				
 		

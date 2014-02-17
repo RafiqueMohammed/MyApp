@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -96,10 +97,10 @@ public class LatestNews extends Activity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-
+		AdapterContextMenuInfo cont=(AdapterContextMenuInfo) item.getMenuInfo();
 		switch(item.getItemId()){
 		case R.id.latest_news_context_delete:
-			AdapterContextMenuInfo cont=(AdapterContextMenuInfo) item.getMenuInfo();
+			
 			if(MyMethods.DeleteItemFromListView(newsList.getAdapter(), cont)){
 				Toast.makeText(this,"Successfully deleted",Toast.LENGTH_LONG).show();
 			}else{
@@ -110,6 +111,35 @@ public class LatestNews extends Activity {
 			Log.d("ARR","Send Mail was clicked");
 			return true;
 		case R.id.latest_news_addfav:
+			NewsAdapter item_news=(NewsAdapter)newsList.getAdapter();
+			item.setTitle("Remove from Fav");
+			item.setVisible(false);
+			db= mydb.getWritableDatabase();
+			ContentValues up_val=new ContentValues();
+			up_val.put("fav",1);
+			String[] wArg={""+item_news.getItem(cont.position)._id};
+			int result=db.update(MyDatabase.TAB_NEWS,up_val,"_id=?", wArg);
+			if(result>0){
+				Log.d("ARR","-"+item_news.getItem(cont.position).fav+" id:"+item_news.getItem(cont.position)._id+" res:"+result);
+				String[] col={"_id","title","fav","status"};
+				Cursor c=db.query(MyDatabase.TAB_NEWS,col,"_id=?", wArg,null,null,null);
+				if(c.getCount()>0){
+					for(int cr=0;cr<c.getCount();cr++){
+						Log.d("ARR","Cursor : id:"+c.getInt(0)+" fav:"+c.getInt(2)+" title:"+c.getString(1)+" status:"+c.getInt(3));
+						
+					}
+				}else{
+					Log.d("ARR","Not found");
+				}
+				c.close();
+				ImageView favicon=(ImageView) findViewById(R.id.latest_news_addfav);
+				favicon.setImageResource(R.drawable.fav_28);
+				adapt.notifyDataSetChanged();
+				
+				MyMethods.ShowAlert(this,"Success","Successfully added to your favourite", false,true);
+				}else{
+					MyMethods.ShowAlert(this,"Failed","Unable to add to your favourite", false,false);
+						}
 			return true;
 		default:
 			return super.onContextItemSelected(item);
@@ -151,22 +181,21 @@ public class LatestNews extends Activity {
 	public void populateLatestNewsList()
 		 {
 	
-		String qry = "SELECT _id,title,description,posted_on FROM "+MyDatabase.TAB_NEWS+" ORDER BY "+MyDatabase.FLD_ID+" DESC;";
+		String qry = "SELECT _id,title,description,posted_on,status,cloud_id FROM "+MyDatabase.TAB_NEWS+" ORDER BY "+MyDatabase.FLD_ID+" DESC;";
 		SQLiteDatabase db = mydb.getReadableDatabase();
 		cur= db.rawQuery(qry, null);
 		addnews.clear();
 		
 		while (cur.moveToNext()) {
-			addnews.add(new AddNews(cur.getInt(0), cur.getString(1), cur.getString(2), cur.getString(3)));
+			addnews.add(new AddNews(cur.getInt(5),cur.getInt(0), cur.getString(1), cur.getString(2), cur.getString(3),cur.getInt(4),0));
 			
 		} 
 	
-		NewsAdapter adapt = new NewsAdapter(this,R.layout.latest_news_singleview, R.id.LatestNews_title,addnews);
+		adapt = new NewsAdapter(this,R.layout.latest_news_singleview, R.id.LatestNews_title,addnews);
 		TextView empty_view=new TextView(LatestNews.this);
+		newsList.setAdapter(adapt);
 		empty_view.setText("Your News Box Is Empty!");
 		newsList.setEmptyView(empty_view);
-		newsList.setAdapter(adapt);
-		
 		
 		}
 
@@ -197,7 +226,7 @@ public class LatestNews extends Activity {
 		cv.put("body",body);
 		cv.put("posted_on",posted_on);
 		cv.put("status",1);
-		cv.put("enabled",1);
+		cv.put("fav",0);
 		
 						try {
 			

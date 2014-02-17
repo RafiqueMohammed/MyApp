@@ -17,6 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <color name="getCCC">#AAA</color>
+    <color name="UnreadList">#FEDDDD</color>
 
 
 </resources>
