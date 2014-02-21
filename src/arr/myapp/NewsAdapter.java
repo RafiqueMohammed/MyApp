@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public void setListData(List<AddNews> data){
 		holder.VH_title.setText(mycoll.get(position).getTitle());
 		if(mycoll.get(position).getStatus()!=1){
 			
-		}
+		}holder.VH_title.setTypeface(null,Typeface.BOLD);
 		if(mycoll.get(position).getFav()==1){
 			holder.VH_fav.setImageResource(R.drawable.fav_28);
 		}

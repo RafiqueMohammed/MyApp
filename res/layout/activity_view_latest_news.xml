@@ -8,9 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ViewLatestNews" >
 
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
@@ -22,21 +21,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#99BB00" /> <!-- android:text="@string/latest_news_dummy_title" -->
 
-
     <TextView
         android:id="@+id/view_latest_news_posted_on"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:gravity="right"
         android:paddingBottom="10dp"
         android:paddingRight="6dp"
-       
-        android:textStyle="bold"
-        android:textColor="#FFBB99" /><!-- android:text="@string/latest_news_dummy_posted" -->
+        android:textColor="#FFBB99"
+        android:textStyle="bold" />
+<!-- android:text="@string/latest_news_dummy_posted" -->
 
     <TextView
         android:id="@+id/view_latest_news_body"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
        />  <!-- android:text="@string/latest_news_dummy_body" -->
 </LinearLayout>

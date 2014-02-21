@@ -1,4 +1,4 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,63 +8,66 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Feedback" >
 
-    <TableRow
-        android:id="@+id/tableRow1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
+        android:layout_weight="1"
+        android:text="@string/full_name" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/feedback_fname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" android:layout_weight="2" >
-
-            <requestFocus />
-        </EditText>
-    </TableRow>
-
-    <TableRow
-        android:id="@+id/tableRow2"
+    <EditText
+        android:id="@+id/feedback_fname"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_weight="2"
+        android:ems="10"
+        android:inputType="textPersonName" >
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/email" />
+        <requestFocus />
+    </EditText>
 
-        <EditText
-            android:id="@+id/feedback_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
-    </TableRow>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feedback_fname"
+        android:layout_marginTop="17dp"
+        android:text="@string/email" />
+
+    <EditText
+        android:id="@+id/feedback_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill"
+        android:layout_alignLeft="@+id/feedback_email"
+        android:layout_below="@+id/feedback_email"
+        android:layout_marginTop="14dp"
         android:text="@string/your_message" />
-
 
     <EditText
         android:id="@+id/feedback_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="15dp"
         android:layout_weight="0.23"
+        android:ems="10"
         android:gravity="top|left"
         android:inputType="textMultiLine" />
 
-</TableLayout>
+</RelativeLayout>

@@ -6,8 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -45,16 +43,18 @@ public class Feedback extends Activity {
 		msg=(EditText) findViewById(R.id.feedback_msg);
 		AccountManager manager = AccountManager.get(this); 
 	    Account[] accounts = manager.getAccounts();
-	    UUID uniqueKey = UUID.randomUUID();   
-	    Log.d("ARR","Unique ID :"+uniqueKey);
+
 	    if(accounts.length<1){
 	    	MyMethods.ShowAlert((Activity)this,"Email Account","You have no default account! Please create an email account!",true,false);
-	    }else{
-	    	  MyMethods.ShowAlert((Activity)this,"Your Account",""+accounts.length,false,true);
 	    }
 	  
-
-		
+	    Log.d("ARR","+Model : "+android.os.Build.MODEL);
+	    Log.d("ARR","+MANUFACTURER : "+android.os.Build.MANUFACTURER);
+	    Log.d("ARR","+TYPE : "+android.os.Build.TYPE);
+	    Log.d("ARR","+USER : "+android.os.Build.USER);
+	    Log.d("ARR","+VERSION.CODENAME : "+android.os.Build.VERSION.CODENAME);
+	    Log.d("ARR","+RELEASE : "+android.os.Build.VERSION.RELEASE);
+	    Log.d("ARR","+SDK_INT : "+android.os.Build.VERSION.SDK_INT);
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -16,8 +16,9 @@ import arr.myapp.ListViewCollection.AddNews;
 public class MyDatabase extends SQLiteOpenHelper {
 
 	public static final String DB_NAME="aitj";
-	public static final int DB_VERSION=1;
+	public static final int DB_VERSION=5;
 	public static final String TAB_NEWS="latest_news";
+	public static final String TAB_CONTACTS="contacts";
 	public static final String FLD_ID="_id";
 	public static final String FLD_CLOUD_ID="cloud_id";
 	
@@ -32,7 +33,7 @@ final Context c;
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 
-		String query="CREATE TABLE "+TAB_NEWS+"("+FLD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+FLD_CLOUD_ID+" INTEGER UNIQUE,title VARCHAR(700),description VARCHAR(700),body TEXT,status INTEGER(1) DEFAULT 0,fav INTEGER(1) DEFAULT 0,posted_on DATETIME);";
+		String query="CREATE TABLE "+TAB_NEWS+"("+FLD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+FLD_CLOUD_ID+" INTEGER UNIQUE,title VARCHAR(700),description VARCHAR(700),body TEXT,status INTEGER(1) DEFAULT 0,fav INTEGER(1) DEFAULT 0,posted_on DATETIME DEFAULT CURRENT_TIMESTAMP);";
 		try {
 			db.execSQL(query);
 			Toast.makeText(c,"Table created",Toast.LENGTH_LONG).show();

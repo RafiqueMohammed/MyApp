@@ -1,5 +1,10 @@
 package arr.myapp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -83,4 +88,24 @@ public class MyMethods {
 		return true;
 	}
 
+	public static String getIndianDateTime(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date dt;
+		try {
+			dt = dateFormat.parse(date);
+			return dateFormat.format(dt);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+        
 }
+public static String getCurrentDateTime(){
+	SimpleDateFormat dateFormat = new SimpleDateFormat(
+            "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+    Date date = new Date();
+    return dateFormat.format(date);
+}
+}
+

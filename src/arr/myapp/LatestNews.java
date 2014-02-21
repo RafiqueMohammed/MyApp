@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -187,6 +188,7 @@ public class LatestNews extends Activity {
 		addnews.clear();
 		
 		while (cur.moveToNext()) {
+			Log.d("ARR",MyMethods.getIndianDateTime(cur.getString(3)));
 			addnews.add(new AddNews(cur.getInt(5),cur.getInt(0), cur.getString(1), cur.getString(2), cur.getString(3),cur.getInt(4),0));
 			
 		} 
@@ -246,11 +248,8 @@ public class LatestNews extends Activity {
 			SharedPreferences.Editor edit=sp.edit();
 			edit.putInt("last_cloud_id",cloud_id);
 			edit.commit();
-			
-			int getSP=sp.getInt("last_cloud_id",-1);
-			Toast.makeText(con,"SharedPrefs "+getSP, Toast.LENGTH_LONG).show();
-			
-			
+
+					
 	}
 
 	public class FetchLatestNews extends AsyncTask<String, Integer, String[]> {
