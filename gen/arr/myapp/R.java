@@ -65,23 +65,23 @@ public final class R {
         public static final int LatestNews_posted_on=0x7f0b0018;
         public static final int LatestNews_title=0x7f0b0016;
         public static final int VideoPlayerView=0x7f0b0007;
-        public static final int ViewNews_send_email=0x7f0b0022;
-        public static final int ViewNews_share_with=0x7f0b0023;
-        public static final int action_settings=0x7f0b0021;
+        public static final int ViewNews_send_email=0x7f0b0023;
+        public static final int ViewNews_share_with=0x7f0b0024;
+        public static final int action_settings=0x7f0b0022;
         public static final int dummy_hello=0x7f0b000d;
         public static final int dummy_refresh=0x7f0b000e;
         public static final int feedback_email=0x7f0b0003;
         public static final int feedback_fname=0x7f0b0001;
         public static final int feedback_msg=0x7f0b0005;
-        public static final int feedback_send=0x7f0b001d;
+        public static final int feedback_send=0x7f0b001e;
         public static final int homeMenu_icon_layout=0x7f0b0013;
         public static final int homeMenu_title_layout=0x7f0b0014;
         public static final int home_menu_layout_parent=0x7f0b0012;
         public static final int imageView1=0x7f0b0009;
         public static final int latest_news_addfav=0x7f0b0019;
-        public static final int latest_news_context_delete=0x7f0b001f;
-        public static final int latest_news_sendmail=0x7f0b0020;
-        public static final int latest_news_top_menu=0x7f0b001e;
+        public static final int latest_news_context_delete=0x7f0b0020;
+        public static final int latest_news_sendmail=0x7f0b0021;
+        public static final int latest_news_top_menu=0x7f0b001f;
         public static final int list_title=0x7f0b001a;
         public static final int loading_txt=0x7f0b001c;
         public static final int progressBar1=0x7f0b000b;
@@ -89,9 +89,10 @@ public final class R {
         public static final int send_btn=0x7f0b001b;
         public static final int splash_txt=0x7f0b000a;
         public static final int test_list_view=0x7f0b000c;
-        public static final int textView1=0x7f0b0000;
         public static final int textView2=0x7f0b0002;
         public static final int textView3=0x7f0b0004;
+        public static final int upload=0x7f0b001d;
+        public static final int upload_progress=0x7f0b0000;
         public static final int view_latest_news_body=0x7f0b0011;
         public static final int view_latest_news_posted_on=0x7f0b0010;
         public static final int view_latest_news_title=0x7f0b000f;
@@ -108,6 +109,7 @@ public final class R {
         public static final int all_list_layout=0x7f030008;
         public static final int latest_news_singleview=0x7f030009;
         public static final int subcribe=0x7f03000a;
+        public static final int upload_image=0x7f03000b;
     }
     public static final class menu {
         public static final int feedback=0x7f0a0000;

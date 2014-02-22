@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
     		 intent = new Intent(getApplicationContext(),LatestNews.class);
     		 break;
     	case 1:
-    		 intent = new Intent(MainActivity.this,LiveVideo.class);
+    		 intent = new Intent(MainActivity.this,UploadImage.class);
     		 break;
     	case 2:
     	 intent = new Intent(this,LiveVideo.class);

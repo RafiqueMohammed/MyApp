@@ -64,6 +64,9 @@
         <activity
             android:name="arr.myapp.Settings"
             android:label="@string/title_activity_settings" >
+        </activity><activity
+            android:name="arr.myapp.UploadImage"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

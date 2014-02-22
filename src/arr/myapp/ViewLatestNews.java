@@ -31,7 +31,8 @@ public class ViewLatestNews extends Activity {
 			this.mydb = new MyDatabase(this);
 			this.db = mydb.getReadableDatabase();
 			String[] args = { "" + item_id };
-			this.cur = db.rawQuery("SELECT title,body,posted_on FROM "+ MyDatabase.TAB_NEWS + " WHERE _id=?", args);
+			
+			this.cur = db.rawQuery("SELECT title,body,posted_on,status FROM "+ MyDatabase.TAB_NEWS + " WHERE _id=?", args);
 			int num_rows=cur.getCount();
 			
 			if(num_rows==0){
@@ -41,7 +42,7 @@ public class ViewLatestNews extends Activity {
 				posted=(TextView) findViewById(R.id.view_latest_news_posted_on);
 				body=(TextView) findViewById(R.id.view_latest_news_body);
 				while(cur.moveToNext()){
-					title.setText(cur.getString(0));
+					title.setText(cur.getString(0)+" and raf :"+cur.getString(3));
 					posted.setText(cur.getString(2));
 					body.setText(cur.getString(1));
 				}
