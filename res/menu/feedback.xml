@@ -4,7 +4,7 @@
         android:id="@+id/feedback_send"
         android:orderInCategory="1"
         android:showAsAction="always"
-        android:title="@string/feedback_send"
+        android:title="@string/title_activity_feedback"
        
         android:icon="@drawable/send_now"/>
 

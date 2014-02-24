@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -21,12 +23,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         list=new ArrayList<HomeMenuListColl>();
-        list.add(new HomeMenuListColl("Latest News",R.drawable.news64));
-        list.add(new HomeMenuListColl("Live Feeds",R.drawable.livefeeds64));
-        list.add(new HomeMenuListColl("Live Video",R.drawable.video_64));
-        list.add(new HomeMenuListColl("AITJ Contacts",R.drawable.contacts64));
-        list.add(new HomeMenuListColl("Feedback",R.drawable.sendback64));
-        list.add(new HomeMenuListColl("Settings",R.drawable.settings64));
+      
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_latest_news),R.drawable.news64));
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_live_feeds),R.drawable.livefeeds64));
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_live_video),R.drawable.video_64));
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_contacts),R.drawable.contacts64));
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_feedback),R.drawable.sendback64));
+        list.add(new HomeMenuListColl(getResources().getString(R.string.title_activity_settings),R.drawable.settings64));
         
    
         
@@ -49,6 +52,19 @@ public class MainActivity extends Activity {
        
     }
     
+    @Override
+    protected void onResume() {
+    	// TODO Auto-generated method stub
+    	super.onResume();
+  if(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_changed","-").equals("yes")){
+    	Log.d("ARR","Sensed Changes! key:"+PreferenceManager.getDefaultSharedPreferences(this).getString("pref_changed","-"));
+    	PreferenceManager.getDefaultSharedPreferences(this).edit().remove("pref_changed").commit();
+    	startActivity(getIntent());
+    	finish();
+    }  	 
+    }
+  	
+    
     private void openWindow(int pos){
     	
     	Intent intent = new Intent();
@@ -61,7 +77,7 @@ public class MainActivity extends Activity {
     		 intent = new Intent(MainActivity.this,UploadImage.class);
     		 break;
     	case 2:
-    	 intent = new Intent(this,LiveVideo.class);
+    	 intent = getIntent();
     	 break;
     	case 3:
    		 intent = new Intent(this,LatestNews.class);
@@ -71,7 +87,7 @@ public class MainActivity extends Activity {
       		 break;
     	case 5:
       		 intent = new Intent(this,Settings.class);
-      		 startActivityForResult(intent, 1);
+      		// startActivity(intent, 1);
       		 break;
  		
     	}

@@ -27,6 +27,7 @@ final Context c;
 		super(context, DB_NAME, null, DB_VERSION);
 		this.c=context;
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -93,5 +94,7 @@ final Context c;
 		}
 		return true;
 	}
+	
+
 
 }

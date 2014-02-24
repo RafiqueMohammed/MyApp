@@ -1,14 +1,17 @@
 package arr.myapp;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -26,12 +29,14 @@ public class SplashScreen extends Activity {
 		splash_txt = (TextView) findViewById(R.id.splash_txt);
 		final CheckInternet ci = new CheckInternet(this);
 		final SharedPreferences sp = getPreferences(MODE_PRIVATE);
-		String AuthID = sp.getString("AuthID", "0");
+		final SharedPreferences lang_pref=PreferenceManager.getDefaultSharedPreferences(SplashScreen.this);
+		String AuthID = sp.getString("AuthID", "-");
 		/*
 		 * new Handler().postDelayed(new Runnable() {
 		 * 
 		 * @Override public void run() { // TODO Auto-generated method stub
 		 */
+		
 
 		final Handler handler = new Handler();
 
@@ -46,6 +51,8 @@ public class SplashScreen extends Activity {
 							"No Internet Connection Available",
 							Toast.LENGTH_SHORT).show();
 				}
+				
+				
 			}
 		};
 
@@ -67,13 +74,18 @@ public class SplashScreen extends Activity {
 					{
 					edit.putInt("DeviceType",tm.getPhoneType());
 					edit.putString("AuthID",tm.getDeviceId());
+					
 					}else{
 						edit.putInt("DeviceType",0);
 						UUID newAuthID = UUID.randomUUID();
 						edit.putString("AuthID",newAuthID.toString());
 					}
 				edit.commit();
-				Log.d("ARR DEVICE", "DeviceType :"+sp.getInt("DeviceType",0)+" AuthID : "+sp.getString("AuthID", "-"));
+				
+		
+		SharedPreferences.Editor l_edit=lang_pref.edit();
+				l_edit.putString("Language","en");
+				l_edit.commit();
 				
 				SQLiteDatabase db = mydb.getWritableDatabase();
 				try {
@@ -100,16 +112,17 @@ public class SplashScreen extends Activity {
 		};
 
 		
+MyMethods.setLanguage(getBaseContext(),lang_pref.getString("Language","en"));
 
-		if (AuthID.equals("0")) {
+		if (AuthID.equals("-")) {
 			handler.postDelayed(settingUp, 3000);
 		} else {
-			Toast.makeText(SplashScreen.this, "Skipped.", Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(SplashScreen.this, "Skipped.", Toast.LENGTH_SHORT).show();
 			Log.d("ARR", "Skipped");
 			Intent i = new Intent(SplashScreen.this, MainActivity.class);
 			startActivity(i);
 			finish();
+			
 		}
 
 	}

@@ -10,7 +10,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
 import android.util.Log;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;
@@ -106,6 +108,14 @@ public static String getCurrentDateTime(){
             "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
     Date date = new Date();
     return dateFormat.format(date);
+}
+
+public static void setLanguage(Context con,String lang){
+	Locale loc = new Locale(lang);
+	Locale.setDefault(loc);
+	Configuration conf =new Configuration();
+	conf.locale=loc;
+	con.getResources().updateConfiguration(conf, con.getResources().getDisplayMetrics());
 }
 }
 
