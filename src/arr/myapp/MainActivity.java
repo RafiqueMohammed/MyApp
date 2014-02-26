@@ -4,7 +4,6 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -57,7 +56,6 @@ public class MainActivity extends Activity {
     	// TODO Auto-generated method stub
     	super.onResume();
   if(PreferenceManager.getDefaultSharedPreferences(this).getString("pref_changed","-").equals("yes")){
-    	Log.d("ARR","Sensed Changes! key:"+PreferenceManager.getDefaultSharedPreferences(this).getString("pref_changed","-"));
     	PreferenceManager.getDefaultSharedPreferences(this).edit().remove("pref_changed").commit();
     	startActivity(getIntent());
     	finish();
@@ -87,7 +85,6 @@ public class MainActivity extends Activity {
       		 break;
     	case 5:
       		 intent = new Intent(this,Settings.class);
-      		// startActivity(intent, 1);
       		 break;
  		
     	}

@@ -5,7 +5,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
@@ -22,14 +21,12 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 		
 		super.onResume();
 		getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-		Log.d("ARR","OnResume Called");
 	}
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
 		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-		Log.d("ARR","OnPause Called");
 	}
 
 	@Override
@@ -47,7 +44,6 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 			    finish();
 			
 		}
-		Log.d("ARR","onSharedPreferenceChanged Called Key:"+key);
 		
 	}
 }

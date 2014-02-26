@@ -26,15 +26,9 @@ public class SplashScreen extends Activity {
 		setContentView(R.layout.activity_splash_screen);
 		splash_txt = (TextView) findViewById(R.id.splash_txt);
 		final CheckInternet ci = new CheckInternet(this);
-		final SharedPreferences sp = getPreferences(MODE_PRIVATE);
+		final SharedPreferences sp = this.getPreferences(MODE_PRIVATE);
 		final SharedPreferences lang_pref=PreferenceManager.getDefaultSharedPreferences(SplashScreen.this);
-		String AuthID = sp.getString("AuthID", "-");
-		/*
-		 * new Handler().postDelayed(new Runnable() {
-		 * 
-		 * @Override public void run() { // TODO Auto-generated method stub
-		 */
-		
+	Log.d("ARR","Auth :"+sp.getString("AuthID","-"));
 
 		final Handler handler = new Handler();
 
@@ -68,17 +62,22 @@ public class SplashScreen extends Activity {
 				
 				
 				TelephonyManager tm=(TelephonyManager)SplashScreen.this.getSystemService(Context.TELEPHONY_SERVICE);
+				UUID newAuthID = UUID.randomUUID();
 				if (tm.getLine1Number()!= null)
 					{
+					String device_id=((tm.getDeviceId()==null)? newAuthID.toString() :tm.getDeviceId()) ;
 					edit.putInt("DeviceType",tm.getPhoneType());
-					edit.putString("AuthID",tm.getDeviceId());
-					
+					edit.putString("AuthID",device_id);
+					edit.commit();
+					Log.d("ARR","Fresh Auth : Cellular"+sp.getString("AuthID","Not again 1while "+tm.getPhoneType()));
 					}else{
 						edit.putInt("DeviceType",0);
-						UUID newAuthID = UUID.randomUUID();
+						
 						edit.putString("AuthID",newAuthID.toString());
+						edit.commit();
+						Log.d("ARR","Fresh Auth :"+sp.getString("AuthID","Not again 2while "+newAuthID));
 					}
-				edit.commit();
+				
 				
 		
 		SharedPreferences.Editor l_edit=lang_pref.edit();
@@ -117,20 +116,17 @@ Runnable skipToHomepage = new Runnable() {
 	@Override
 	public void run() {
 		Toast.makeText(SplashScreen.this, "Skipped.", Toast.LENGTH_SHORT).show();
-		Log.d("ARR", "Skipped");
 		Intent i = new Intent(SplashScreen.this, MainActivity.class);
 		startActivity(i);
 		finish();
-		
-		
 	}
 };
 
 
-		if (AuthID.equals("-")) {
-			handler.postDelayed(settingUp, 3000);
+		if (sp.contains("AuthID")) {
+			handler.postDelayed(skipToHomepage, 2000);
 		} else {
-			handler.postDelayed(skipToHomepage, 3000);
+			handler.postDelayed(settingUp, 3000);
 			
 		}
 
