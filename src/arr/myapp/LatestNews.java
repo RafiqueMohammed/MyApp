@@ -70,8 +70,7 @@ public class LatestNews extends Activity {
 		newsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
-					long arg3) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3) {
 				// TODO Auto-generated method stub
 				int item_id = addnews.get(pos)._id;
 				String[] args = { "" + item_id };
@@ -84,7 +83,7 @@ public class LatestNews extends Activity {
 				addnews.get(pos).setStatus(0); // Mark List as Read in Runtime
 
 				adapt.notifyDataSetChanged();
-db.close();
+				db.close();
 				Intent view_news = new Intent(LatestNews.this,
 						ViewLatestNews.class);
 				view_news.putExtra("item_id", item_id);
@@ -96,17 +95,25 @@ db.close();
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
 		// TODO Auto-generated method stub
+		AdapterContextMenuInfo cont = (AdapterContextMenuInfo) menuInfo;
+		NewsAdapter item_news = (NewsAdapter) newsList.getAdapter();
+		int isFav=item_news.getItem(cont.position).getFav();
+		
+		if(isFav==1){
+			Log.d("ARR","It is Fav"+isFav+" Get Fav"+item_news.getItem(cont.position).getFav()+ "pos :"+cont.position);
+		}else{
+			Log.d("ARR","It is not Fav"+isFav+ "pos :"+cont.position);
+		}
+		
 		getMenuInflater().inflate(R.menu.latest_news_context, menu);
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		AdapterContextMenuInfo cont = (AdapterContextMenuInfo) item
-				.getMenuInfo();
+		AdapterContextMenuInfo cont = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.latest_news_context_delete:
 
@@ -138,8 +145,9 @@ db.close();
 				Log.d("ARR", "-" + item_news.getItem(cont.position).fav	+ " id:" + item_news.getItem(cont.position)._id	+ " res:" + result);
 				
 				item_news.getItem(cont.position).setFav(1);
-				ImageView favicon = (ImageView) findViewById(R.id.latest_news_addfav);
-				favicon.setImageResource(R.drawable.fav_28);
+				
+				Log.d("ARR","Item no :"+item_news.getItem(cont.position)._id);
+
 				adapt.notifyDataSetChanged();
 				db.close();
 				
@@ -191,25 +199,23 @@ db.close();
 
 	public void populateLatestNewsList() {
 
-		String qry = "SELECT _id,title,description,posted_on,status,cloud_id FROM "
+		/*String qry = "SELECT _id,title,description,posted_on,status,cloud_id,fav FROM "
 				+ MyDatabase.TAB_NEWS
 				+ " ORDER BY "
 				+ MyDatabase.FLD_ID
-				+ " DESC;";
+				+ " DESC;";*/
 		SQLiteDatabase db = mydb.getReadableDatabase();
-		cur = db.rawQuery(qry, null);
+		String[] col={"cloud_id","_id","title","description","posted_on","status","fav"};
+		
+		//cur = db.rawQuery(qry, null);
+		cur = db.query(MyDatabase.TAB_NEWS,col,null,null,null,null,MyDatabase.FLD_ID+ " DESC");
 		addnews.clear();
 
 		while (cur.moveToNext()) {
-			Log.d("ARR", MyMethods.getIndianDateTime(cur.getString(3)));
-			addnews.add(new AddNews(cur.getInt(5), cur.getInt(0), cur
-					.getString(1), cur.getString(2), cur.getString(3), cur
-					.getInt(4), 0));
-
+		addnews.add(new AddNews(cur.getInt(0), cur.getInt(1), cur.getString(2), cur.getString(3), cur.getString(4), cur.getInt(5), cur.getInt(6)));
 		}
 
-		adapt = new NewsAdapter(this, R.layout.latest_news_singleview,
-				R.id.LatestNews_title, addnews);
+		adapt = new NewsAdapter(this, R.layout.latest_news_singleview,R.id.LatestNews_title, addnews);
 		TextView empty_view = new TextView(LatestNews.this);
 		newsList.setAdapter(adapt);
 		adapt.notifyDataSetChanged();
@@ -311,7 +317,7 @@ db.close();
 			super.onPreExecute();
 			pd.setTitle("Please wait..");
 			pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			pd.setMessage("Checking and Retrieving Latest updates..");
+			pd.setMessage(getResources().getString(R.string.checking_news));
 			pd.show();
 
 		}

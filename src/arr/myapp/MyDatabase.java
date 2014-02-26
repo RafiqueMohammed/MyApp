@@ -62,6 +62,7 @@ final Context c;
 
 	}
 	
+
 	public static List<AddNews> takeBackup(SQLiteDatabase db){
 		String[] cols={"cloud_id","_id","title","description","posted_on","status"};
 		

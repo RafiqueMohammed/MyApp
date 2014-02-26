@@ -1,6 +1,5 @@
 package arr.myapp;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;

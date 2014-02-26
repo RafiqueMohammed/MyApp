@@ -73,6 +73,7 @@ public void setListData(List<AddNews> data){
 		}else{
 			holder.VH_title.setTypeface(null,Typeface.BOLD);
 		}
+		
 		if(mycoll.get(position).getFav()==1){
 			holder.VH_fav.setImageResource(R.drawable.fav_28);
 		}

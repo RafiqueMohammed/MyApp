@@ -50,14 +50,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="arr.myapp.Testing"
-            android:label="@string/title_activity_testing" >
-        </activity>
-        <activity
-            android:name="arr.myapp.TestNews"
-            android:label="@string/title_activity_test_news" >
-        </activity>
-        <activity
             android:name="arr.myapp.Feedback"
             android:label="@string/title_activity_feedback" >
         </activity>

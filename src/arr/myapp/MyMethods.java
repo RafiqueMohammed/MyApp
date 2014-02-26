@@ -12,7 +12,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
 import android.util.Log;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListAdapter;

@@ -1,6 +1,5 @@
 package arr.myapp;
 
-import java.util.Locale;
 import java.util.UUID;
 
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -56,7 +54,7 @@ public class SplashScreen extends Activity {
 			}
 		};
 
-		handler.postDelayed(InternetCheck, 1000);
+		handler.postDelayed(InternetCheck, 2000);
 		final Runnable settingUp = new Runnable() {
 
 			@Override
@@ -114,14 +112,25 @@ public class SplashScreen extends Activity {
 		
 MyMethods.setLanguage(getBaseContext(),lang_pref.getString("Language","en"));
 
+Runnable skipToHomepage = new Runnable() {
+
+	@Override
+	public void run() {
+		Toast.makeText(SplashScreen.this, "Skipped.", Toast.LENGTH_SHORT).show();
+		Log.d("ARR", "Skipped");
+		Intent i = new Intent(SplashScreen.this, MainActivity.class);
+		startActivity(i);
+		finish();
+		
+		
+	}
+};
+
+
 		if (AuthID.equals("-")) {
 			handler.postDelayed(settingUp, 3000);
 		} else {
-			Toast.makeText(SplashScreen.this, "Skipped.", Toast.LENGTH_SHORT).show();
-			Log.d("ARR", "Skipped");
-			Intent i = new Intent(SplashScreen.this, MainActivity.class);
-			startActivity(i);
-			finish();
+			handler.postDelayed(skipToHomepage, 3000);
 			
 		}
 
