@@ -78,7 +78,7 @@ public final class R {
         public static final int imageView1=0x7f0b0009;
         public static final int latest_news_addfav=0x7f0b0019;
         public static final int latest_news_context_delete=0x7f0b0020;
-        public static final int latest_news_sendmail=0x7f0b0021;
+        public static final int latest_news_context_remove_fav=0x7f0b0021;
         public static final int latest_news_top_menu=0x7f0b001f;
         public static final int list_title=0x7f0b001a;
         public static final int loading_txt=0x7f0b001c;
@@ -129,10 +129,11 @@ public final class R {
         public static final int latest_news_dummy_desc=0x7f070010;
         public static final int latest_news_dummy_title=0x7f07000f;
         public static final int latest_news_posted=0x7f07000e;
+        public static final int latest_news_remove_fav=0x7f07001a;
         public static final int prefferd_lang=0x7f070018;
         public static final int refresh=0x7f070004;
         public static final int salaam_en=0x7f070003;
-        public static final int salaam_ta=0x7f07001a;
+        public static final int salaam_ta=0x7f07001b;
         public static final int send_email=0x7f070011;
         public static final int share_with=0x7f070017;
         public static final int title_activity_contacts=0x7f07000b;

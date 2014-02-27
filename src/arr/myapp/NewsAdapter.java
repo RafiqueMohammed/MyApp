@@ -75,7 +75,9 @@ public void setListData(List<AddNews> data){
 		}
 		
 		if(mycoll.get(position).getFav()==1){
-			holder.VH_fav.setImageResource(R.drawable.star);
+			holder.VH_fav.setVisibility(View.VISIBLE);
+		}else{
+			holder.VH_fav.setVisibility(View.INVISIBLE);
 		}
 		holder.VH_desc.setText(mycoll.get(position).getDescription());
 		holder.VH_posted_on.setText(mycoll.get(position).getPosted_on());

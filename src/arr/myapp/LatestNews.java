@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +35,6 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +44,7 @@ public class LatestNews extends Activity {
 	ListView newsList;
 	CheckInternet ci;
 	Context con;
-	final String NEWS_URL = "http://api.aitj.org/api/v1/?android";
+	final String NEWS_URL = "http://api.aitj.org/api/v1/?last_seen=";
 	List<AddNews> addnews = new ArrayList<ListViewCollection.AddNews>();
 	static MyDatabase mydb;
 	SQLiteDatabase db;
@@ -84,8 +82,7 @@ public class LatestNews extends Activity {
 
 				adapt.notifyDataSetChanged();
 				db.close();
-				Intent view_news = new Intent(LatestNews.this,
-						ViewLatestNews.class);
+				Intent view_news = new Intent(LatestNews.this,ViewLatestNews.class);
 				view_news.putExtra("item_id", item_id);
 				startActivity(view_news);
 			}
@@ -101,20 +98,27 @@ public class LatestNews extends Activity {
 		NewsAdapter item_news = (NewsAdapter) newsList.getAdapter();
 		int isFav=item_news.getItem(cont.position).getFav();
 		
-		if(isFav==1){
-			Log.d("ARR","It is Fav"+isFav+" Get Fav"+item_news.getItem(cont.position).getFav()+ "pos :"+cont.position);
-		}else{
-			Log.d("ARR","It is not Fav"+isFav+ "pos :"+cont.position);
-		}
-		
 		getMenuInflater().inflate(R.menu.latest_news_context, menu);
+		
+		if(isFav==1){
+			menu.findItem(R.id.latest_news_context_delete).setEnabled(false);
+			menu.findItem(R.id.latest_news_addfav).setVisible(false);
+			menu.findItem(R.id.latest_news_context_remove_fav).setVisible(true);
+		}else{
+			menu.findItem(R.id.latest_news_addfav).setVisible(true);
+			menu.findItem(R.id.latest_news_context_remove_fav).setVisible(false);
+		}
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		AdapterContextMenuInfo cont = (AdapterContextMenuInfo) item.getMenuInfo();
-		switch (item.getItemId()) {
+		NewsAdapter item_news = (NewsAdapter) newsList.getAdapter();	
+		ContentValues up_val = new ContentValues();
+		int result=0;
+	switch (item.getItemId()) {
+		
 		case R.id.latest_news_context_delete:
 
 			if (MyMethods.DeleteItemFromListView(newsList.getAdapter(), cont)) {
@@ -125,39 +129,54 @@ public class LatestNews extends Activity {
 						.show();
 			}
 			return true;
-		case R.id.latest_news_sendmail:
-			Log.d("ARR", "Send Mail was clicked");
-			return true;
+
 		case R.id.latest_news_addfav:
-			NewsAdapter item_news = (NewsAdapter) newsList.getAdapter();
-			item.setTitle("Remove from Fav");
 			
 			db = mydb.getWritableDatabase();
-			
-			ContentValues up_val = new ContentValues();
 			up_val.put("fav","1");
 			String[] wArg = { "" + item_news.getItem(cont.position)._id };
 			
-			int result = db.update(MyDatabase.TAB_NEWS, up_val, "_id=?", wArg);
+			 result = db.update(MyDatabase.TAB_NEWS, up_val, "_id=?", wArg);
 			
 			if (result > 0) {
 				
-				Log.d("ARR", "-" + item_news.getItem(cont.position).fav	+ " id:" + item_news.getItem(cont.position)._id	+ " res:" + result);
-				
 				item_news.getItem(cont.position).setFav(1);
 				
-				Log.d("ARR","Item no :"+item_news.getItem(cont.position)._id);
-
 				adapt.notifyDataSetChanged();
+				
 				db.close();
 				
-				MyMethods.ShowAlert(this, "Success","Successfully added to your favourite", false, true);
+				MyMethods.ShowAlert(this, "Success","Added to your favourite", false, true);
 				
 			} else {
 				MyMethods.ShowAlert(this, "Failed","Unable to add to your favourite", false, false);
 				
 			}
 			return true;
+			
+		case R.id.latest_news_context_remove_fav:
+			db = mydb.getWritableDatabase();
+			up_val.put("fav","0");
+			String[] arg = { "" + item_news.getItem(cont.position)._id };
+			
+			result = db.update(MyDatabase.TAB_NEWS, up_val, "_id=?", arg);
+			
+			if (result > 0) {
+				
+				item_news.getItem(cont.position).setFav(0);
+				
+				adapt.notifyDataSetChanged();
+				
+				db.close();
+				
+				MyMethods.ShowAlert(this, "Success","Removed to your favourite", false, true);
+				
+			} else {
+				MyMethods.ShowAlert(this, "Failed","Unable to add to your favourite", false, false);
+				
+			}
+			return true;
+			
 		default:
 			return super.onContextItemSelected(item);
 		}

@@ -4,13 +4,12 @@
     <item
         android:id="@+id/latest_news_context_delete"
         android:title="@string/delete"/>
-    <item
-        android:id="@+id/latest_news_sendmail"
-        android:title="@string/send_email">
-    </item>
  <item
         android:id="@+id/latest_news_addfav"
         android:title="@string/add_to_fav">
     </item>
+ <item android:id="@+id/latest_news_context_remove_fav" android:title="@string/latest_news_remove_fav" android:visible="false"></item>
+    
+ 
  
 </menu>
